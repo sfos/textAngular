@@ -625,8 +625,10 @@ angular.module('textAngular.DOM', ['textAngular.factories'])
 					if(_selection.collapsed){
 						// insert text at selection, then select then just let normal exec-command run
 						taSelection.insertHtml('<a href="' + options + '" target="_blank">' + options + '</a>', topNode);
-						return;
+					} else {
+						taSelection.insertHtml('<a href="' + options + '" target="_blank">' + _selection.rangeHtml + '</a>', topNode);
 					}
+					return;
 				}else if(command.toLowerCase() === 'inserthtml'){
 					taSelection.insertHtml(options, topNode);
 					return;
@@ -668,7 +670,8 @@ function($window, $document, taDOM){
 			var selection = {
 				start: brException(range.startContainer, range.startOffset),
 				end: brException(range.endContainer, range.endOffset),
-				collapsed: range.collapsed
+				collapsed: range.collapsed,
+				rangeHtml: range.toHtml()
 			};
 			// Check if the container is a text node and return its parent if so
 			container = container.nodeType === 3 ? container.parentNode : container;
