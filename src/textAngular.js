@@ -624,7 +624,7 @@ angular.module('textAngular.DOM', ['textAngular.factories'])
 					var _selection = taSelection.getSelection();
 					if(_selection.collapsed){
 						// insert text at selection, then select then just let normal exec-command run
-						taSelection.insertHtml('<a href="' + options + '">' + options + '</a>', topNode);
+						taSelection.insertHtml('<a href="' + options + '" target="_blank">' + options + '</a>', topNode);
 						return;
 					}
 				}else if(command.toLowerCase() === 'inserthtml'){
